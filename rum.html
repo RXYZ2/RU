@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruba – Portfolio</title>
+
+  <!-- Pixel font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#111111;
+      --card-bg:#ffffff;
+      --card-border:#e5e5e5;
+      --accent:#3b4bff;
+      --muted:#555555;
+      --muted-soft:#777777;
+      --badge-bg:#f1f1f1;
+      --header-bg:#ffffff;
+      --header-border:#eeeeee;
+    }
+
+    body.dark{
+      --bg:#050509;
+      --text:#f5f5f5;
+      --card-bg:#0f1018;
+      --card-border:#292a3a;
+      --accent:#8f9bff;
+      --muted:#d0d0e0;
+      --muted-soft:#aaaacc;
+      --badge-bg:#15151f;
+      --header-bg:#050509;
+      --header-border:#222233;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--text);
+      scroll-behavior:smooth;
+      font-family:"Press Start 2P", system-ui, sans-serif;
+      font-size:11px;
+    }
+
+    body.rtl{
+      font-size:13px;
+    }
+
+    /* NAVBAR */
+    header{
+      width:100%;
+      padding:18px 60px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      background:var(--header-bg);
+      border-bottom:1px solid var(--header-border);
+      z-index:1000;
+    }
+    .logo{
+      font-size:18px;
+      font-weight:700;
+    }
+    nav{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+    }
+    nav a{
+      padding:8px 16px;
+      border-radius:30px;
+      text-decoration:none;
+      color:var(--muted);
+      font-size:10px;
+      transition:.2s;
+    }
+    nav a.active,
+    nav a:hover{
+      background:var(--text);
+      color:#fff;
+    }
+
+    .header-actions{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .toggle-btn{
+      padding:7px 12px;
+      border-radius:20px;
+      border:1px solid var(--card-border);
+      background:var(--badge-bg);
+      color:var(--text);
+      cursor:pointer;
+      font-size:9px;
+    }
+    .toggle-btn:hover{
+      filter:brightness(0.95);
+    }
+
+    /* SECTIONS */
+    section{
+      padding:50px 60px;
+    }
+
+    .section-divider{
+      width:calc(100% - 120px);
+      margin:0 auto;
+      height:1px;
+      background:var(--card-border);
+    }
+
+    /* HERO */
+    .hero{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:60px;
+    }
+    .hero-left{
+      width:50%;
+      min-width:0;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 14px;
+      background:var(--badge-bg);
+      font-size:9px;
+      border-radius:20px;
+      margin-bottom:12px;
+    }
+    .hero-left h1{
+      font-size:26px;
+      margin-bottom:10px;
+    }
+    #typed{
+      font-size:11px;
+      color:var(--muted);
+      height:18px;
+      margin-bottom:16px;
+    }
+    .hero-left p{
+      max-width:430px;
+      color:var(--muted);
+      line-height:1.6;
+      margin-bottom:22px;
+    }
+
+    .socials{
+      display:flex;
+      gap:16px;
+      margin-top:20px;
+    }
+    .socials a{
+      width:55px;
+      height:55px;
+      background:var(--badge-bg);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      transition:.2s ease;
+      overflow:hidden;
+    }
+    .socials a:hover{
+      transform:translateY(-4px);
+      filter:brightness(0.95);
+    }
+    .socials img{
+      width:28px;
+      height:28px;
+      object-fit:contain;
+    }
+
+    .hero-right{
+      width:320px;
+      height:320px;
+      border-radius:20px;
+      overflow:hidden;
+      background:#ddd;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-right img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* SECTION TITLES */
+    h2.section-title{
+      font-size:18px;
+      font-weight:700;
+      text-align:left;
+      margin-bottom:28px;
+    }
+
+    /* ABOUT */
+    .about-grid{
+      max-width:1150px;
+      margin:auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:60px;
+    }
+    .about-left{
+      flex:1;
+      min-width:0;
+    }
+    .about-left p{
+      max-width:520px;
+      color:var(--muted);
+      line-height:1.6;
+      margin-bottom:20px;
+    }
+
+    .cards{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      margin-top:32px;
+      flex-wrap:nowrap;
+    }
+    .card{
+      flex:1;
+      min-width:0;
+      min-height:160px;
+      border:1px solid var(--card-border);
+      border-radius:12px;
+      background:var(--card-bg);
+      padding:18px 22px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+    .card-icon{
+      margin-bottom:10px;
+    }
+    .card-icon img{
+      width:40px;
+      height:40px;
+      object-fit:contain;
+      display:block;
+    }
+    .card h4{
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:4px;
+    }
+    .card p{
+      font-size:10px;
+      color:var(--muted-soft);
+      margin-top:6px;
+      line-height:1.4;
+      max-width:100%;
+      word-break:break-word;
+    }
+
+    /* ABOUT RIGHT (GAME BOX) */
+    .about-img-box{
+      width:260px;
+      min-height:260px;
+      background:var(--card-bg);
+      border-radius:18px;
+      border:1px solid var(--card-border);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex-shrink:0;
+    }
+    #game-title{
+      font-size:12px;
+    }
+    #game-text{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:9px;
+    }
+
+    .game-wrapper{
+      width:100%;
+    }
+    .game-grid{
+      display:grid;
+      grid-template-columns:repeat(3,70px);
+      grid-template-rows:repeat(3,70px);
+      gap:6px;
+      justify-content:center;
+      margin-bottom:10px;
+    }
+    .game-tile{
+      border-radius:10px;
+      border:1px solid var(--card-border);
+      background:var(--badge-bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      cursor:pointer;
+    }
+    .game-tile.empty{
+      background:transparent;
+      border:none;
+      cursor:default;
+    }
+    .game-controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:center;
+      align-items:center;
+      font-size:8px;
+    }
+    .game-controls button{
+      padding:6px 12px;
+      border-radius:20px;
+      border:1px solid var(--card-border);
+      background:var(--badge-bg);
+      cursor:pointer;
+      font-size:8px;
+    }
+    #game-moves{
+      min-width:90px;
+    }
+    #game-status{
+      min-width:100px;
+      text-align:center;
+      color:var(--accent);
+    }
+
+    /* PROJECTS */
+    .projects-container{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:30px;
+      padding:50px 0 10px;
+    }
+    .project-box{
+      border:1px solid var(--card-border);
+      background:var(--card-bg);
+      border-radius:15px;
+      padding:24px 24px 26px;
+      text-align:center;
+    }
+    .p-img{
+      width:100%;
+      height:180px;
+      border-radius:12px;
+      background:#e6e6e6;
+      margin-bottom:16px;
+      cursor:pointer;
+    }
+    .project-box h3{
+      font-size:12px;
+    }
+    .project-desc{
+      font-size:9px;
+      color:var(--muted);
+      margin:10px 0 6px;
+      line-height:1.5;
+    }
+    .project-tech{
+      display:inline-block;
+      margin-top:4px;
+      margin-bottom:18px;
+      padding:4px 14px;
+      border-radius:999px;
+      border:1px solid var(--card-border);
+      background:var(--card-bg);
+      font-size:8px;
+      color:var(--muted-soft);
+    }
+    .project-buttons{
+      display:flex;
+      justify-content:center;
+      gap:10px;
+    }
+    .github-btn,.demo-btn{
+      padding:7px 14px;
+      font-size:9px;
+      border-radius:25px;
+      color:#fff;
+      border:none;
+      background:var(--accent);
+      cursor:pointer;
+    }
+
+    /* SERVICES */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+      padding:40px 0;
+    }
+    .service-card{
+      border:1px solid var(--card-border);
+      border-radius:15px;
+      padding:22px;
+      text-align:center;
+      background:var(--card-bg);
+    }
+    .service-img{
+      width:70px;
+      height:70px;
+      border-radius:12px;
+      background:#e8e8e8;
+      margin:auto;
+      margin-bottom:12px;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .service-img img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .service-card h4{
+      font-size:11px;
+      margin-bottom:6px;
+      font-weight:700;
+    }
+    .service-card p{
+      color:var(--muted-soft);
+      font-size:9px;
+    }
+
+    /* CONTACT */
+    .contact-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:50px;
+    }
+    .contact-right input,
+    .contact-right textarea{
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid var(--card-border);
+      margin-bottom:12px;
+      background:var(--card-bg);
+      color:var(--text);
+      font-size:10px;
+    }
+    .send-btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:var(--accent);
+      color:#fff;
+      font-size:11px;
+      cursor:pointer;
+    }
+
+    /* LIGHTBOX */
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.7);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+    }
+    .lightbox-content{
+      background:var(--card-bg);
+      padding:15px;
+      border-radius:12px;
+      max-width:90%;
+      max-height:90%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+    }
+    .lightbox-img{
+      max-width:80vw;
+      max-height:70vh;
+      border-radius:8px;
+      object-fit:contain;
+    }
+    .lightbox-controls{
+      display:flex;
+      gap:10px;
+    }
+    .lightbox-controls button{
+      padding:6px 14px;
+      border-radius:20px;
+      border:1px solid var(--card-border);
+      background:var(--badge-bg);
+      cursor:pointer;
+      font-size:9px;
+    }
+    .lightbox-close{
+      position:absolute;
+      top:20px;
+      right:30px;
+      font-size:26px;
+      color:#fff;
+      cursor:pointer;
+    }
+
+    /* RTL */
+    body.rtl section,
+    body.rtl h1,
+    body.rtl h2,
+    body.rtl p{
+      text-align:right;
+    }
+    body.rtl .hero{
+      flex-direction:row-reverse;
+    }
+    body.rtl .about-grid,
+    body.rtl .contact-grid{
+      flex-direction:row-reverse;
+    }
+
+    /* ========= RESPONSIVE ========= */
+
+    @media (max-width: 1024px){
+      header{
+        padding:16px 24px;
+        gap:10px;
+        flex-wrap:wrap;
+      }
+
+      section{
+        padding:40px 24px;
+      }
+
+      .section-divider{
+        width:calc(100% - 48px);
+      }
+
+      .hero{
+        gap:30px;
+      }
+
+      .hero-left{
+        width:55%;
+      }
+
+      .hero-right{
+        width:260px;
+        height:260px;
+      }
+
+      .projects-container{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+
+      .services-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 768px){
+      body{
+        font-size:10px;
+      }
+
+      header{
+        padding:14px 16px;
+      }
+
+      nav{
+        justify-content:center;
+      }
+
+      section{
+        padding:36px 16px;
+      }
+
+      .section-divider{
+        width:calc(100% - 32px);
+      }
+
+      .hero{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .hero-left{
+        width:100%;
+      }
+
+      .hero-left h1{
+        font-size:22px;
+      }
+
+      .hero-left p{
+        max-width:100%;
+      }
+
+      .hero-right{
+        width:220px;
+        height:220px;
+        margin:0 auto;
+      }
+
+      .about-grid{
+        flex-direction:column;
+        gap:32px;
+      }
+
+      .about-left p{
+        max-width:100%;
+      }
+
+      .cards{
+        flex-direction:column;
+      }
+      .card{
+        width:100%;
+      }
+
+      .about-img-box{
+        width:100%;
+        max-width:280px;
+        margin:0 auto;
+      }
+
+      .projects-container{
+        grid-template-columns:1fr;
+      }
+
+      .services-grid{
+        grid-template-columns:1fr;
+      }
+
+      .contact-grid{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo" id="logo-text">Ruba</div>
+
+  <nav>
+    <a href="#home" id="nav-home" class="active">Home</a>
+    <a href="#about" id="nav-about">About</a>
+    <a href="#projects" id="nav-projects">Projects</a>
+    <a href="#services" id="nav-services">Services</a>
+    <a href="#contact" id="nav-contact">Contact</a>
+  </nav>
+
+  <div class="header-actions">
+    <button id="lang-toggle" class="toggle-btn" onclick="toggleLang()">AR</button>
+    <button id="theme-toggle" class="toggle-btn" onclick="toggleTheme()">Dark</button>
+  </div>
+</header>
+
+<section id="home" class="hero">
+  <div class="hero-left">
+    <span class="badge" id="badge-text">Available for internship & junior roles</span>
+
+    <h1 id="hero-title">Hi, I'm Ruba</h1>
+
+    <div id="typed"></div>
+
+    <p id="hero-text">
+      Computer Science graduate focused on cybersecurity, Linux, and clean
+      web & mobile interfaces. I build practical, easy-to-use projects that
+      solve real problems.
+    </p>
+
+    <div class="socials">
+      <a href="https://github.com/RXYZ2" target="_blank">
+        <img src="https://img.icons8.com/?size=100&id=62856&format=png&color=000000" alt="GitHub">
+      </a>
+      <a href="https://www.linkedin.com/in/your-username" target="_blank">
+        <img src="https://img.icons8.com/?size=100&id=ZO0pAGpcWYrB&format=png&color=000000" alt="LinkedIn">
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="857-md.png" alt="Ruba avatar">
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="about">
+  <h2 class="section-title" id="about-title">Building Meaningful Digital Experiences</h2>
+
+  <div class="about-grid">
+    <div class="about-left">
+      <p id="about-p1">
+        I enjoy building full-stack projects, analyzing systems, and solving security challenges.
+      </p>
+      <p id="about-p2">
+        My workflow mixes development, problem-solving, and CTF techniques to create practical and secure solutions.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">
+            <img src="https://img.icons8.com/?size=100&id=buti0ig4reqf&format=png&color=000000" alt="Tech stack icon">
+          </div>
+          <h4 id="card1-title">Tech Stack</h4>
+          <p id="card1-text">HTML, CSS, JS, React Native, Linux basics</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <img src="https://img.icons8.com/?size=100&id=39132&format=png&color=000000" alt="Education icon">
+          </div>
+          <h4 id="card2-title">Education</h4>
+          <p id="card2-text">BSc in Computer Science – Al Jouf University</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <img src="https://img.icons8.com/?size=100&id=I2lKi8lyTaJD&format=png&color=000000" alt="Focus icon">
+          </div>
+          <h4 id="card3-title">Focus</h4>
+          <p id="card3-text">Full-Stack, Cybersecurity, CTF</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-img-box">
+      <h3 id="game-title">Pixel Puzzle</h3>
+      <p id="game-text">
+        Simple 3×3 sliding puzzle. Click a tile next to the empty space to move it.
+        Try to arrange the numbers from 1 to 8 in order.
+      </p>
+      <div class="game-wrapper">
+        <div class="game-grid" id="game-grid"></div>
+        <div class="game-controls">
+          <button id="game-shuffle-btn" onclick="shufflePuzzle()">Shuffle</button>
+          <span id="game-moves">Moves: 0</span>
+          <span id="game-status"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="projects">
+  <h2 class="section-title" id="projects-title">Featured Work</h2>
+
+  <div class="projects-container">
+
+    <div class="project-box">
+      <div class="p-img" onclick="openLightbox(1)"></div>
+      <h3 id="proj1-title">Coffee Pickup App</h3>
+      <p class="project-desc" id="proj1-desc">
+        React Native app concept where users order coffee from a single branch,
+        reduce queue time, and let staff focus only on preparing and handing orders.
+      </p>
+      <span class="project-tech" id="proj1-tech">
+        Tech: React Native, Expo, basic REST API
+      </span>
+
+      <div class="project-buttons">
+        <button class="github-btn"
+                onclick="window.open('https://github.com/your-username/coffee-app','_blank')">
+          GitHub
+        </button>
+        <button class="demo-btn" onclick="openLightbox(1)" id="proj1-view-btn">View Images</button>
+      </div>
+    </div>
+
+    <div class="project-box">
+      <div class="p-img" onclick="openLightbox(2)"></div>
+      <h3 id="proj2-title">Hospital DB Integration System</h3>
+      <p class="project-desc" id="proj2-desc">
+        Graduation project that connects two separate hospital databases into
+        a unified system, allowing doctors and staff to access patient data
+        securely from one platform.
+      </p>
+      <span class="project-tech" id="proj2-tech">
+        Tech: HTML, CSS, JavaScript, PHP, MySQL (two databases → one system)
+      </span>
+
+      <div class="project-buttons">
+        <button class="github-btn"
+                onclick="window.open('https://github.com/your-username/hospital-db-integration','_blank')">
+          GitHub
+        </button>
+        <button class="demo-btn" onclick="openLightbox(2)" id="proj2-view-btn">View Images</button>
+      </div>
+    </div>
+
+    <div class="project-box">
+      <div class="p-img" onclick="openLightbox(3)"></div>
+      <h3 id="proj3-title">Personal Portfolio Website</h3>
+      <p class="project-desc" id="proj3-desc">
+        This portfolio website built to practice layout, typography, interactive
+        sections, and a project gallery with image popups.
+      </p>
+      <span class="project-tech" id="proj3-tech">
+        Tech: HTML, CSS, JavaScript
+      </span>
+
+      <div class="project-buttons">
+        <button class="github-btn"
+                onclick="window.open('https://github.com/your-username/ruba-portfolio','_blank')">
+          GitHub
+        </button>
+        <button class="demo-btn" onclick="openLightbox(3)" id="proj3-view-btn">View Images</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="services">
+  <h2 class="section-title" id="services-title">What I Can Help With</h2>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://img.icons8.com/?size=100&id=1vQp8LvypyKh&format=png&color=000000" alt="Web UI Design icon">
+      </div>
+      <h4 id="srv1-title">Web UI Design</h4>
+      <p id="srv1-text">Designing clean, simple layouts for personal and student projects.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://img.icons8.com/?size=100&id=xM5NpnNBYbws&format=png&color=000000" alt="Frontend Development icon">
+      </div>
+      <h4 id="srv2-title">Frontend Development</h4>
+      <p id="srv2-text">Building responsive pages using HTML, CSS, and basic JavaScript.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://img.icons8.com/?size=100&id=PkQpLJisPiTI&format=png&color=000000" alt="Mobile Prototypes icon">
+      </div>
+      <h4 id="srv3-title">Mobile Prototypes</h4>
+      <p id="srv3-text">Creating React Native screens and flows for app ideas.</p>
+    </div>
+
+    <div class="service-card">
+      <div class="service-img">
+        <img src="https://img.icons8.com/?size=100&id=MppfQr5KhWO2&format=png&color=000000" alt="Cybersecurity Basics icon">
+      </div>
+      <h4 id="srv4-title">Cybersecurity Basics</h4>
+      <p id="srv4-text">Awareness, Linux commands, and simple security practices.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="contact">
+  <h2 class="section-title" id="contact-title">Get in Touch with Me</h2>
+
+  <div class="contact-grid">
+    <div>
+      <p id="contact-p1">
+        I'm open to internships, junior roles, and small freelance projects
+        related to web, mobile, or cybersecurity.
+      </p><br>
+      <p id="contact-mail">📧 yourmail@example.com</p>
+      <p id="contact-phone">📞 05xxxxxxxx</p>
+      <p id="contact-location">📍 Saudi Arabia</p>
+    </div>
+
+    <div class="contact-right">
+      <input type="text" placeholder="Your Name" id="contact-name-ph">
+      <input type="email" placeholder="Your Email" id="contact-email-ph">
+      <textarea rows="5" placeholder="Your Message" id="contact-msg-ph"></textarea>
+      <button class="send-btn" id="contact-btn">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <div class="lightbox-content">
+    <img id="lightbox-img" class="lightbox-img" src="">
+    <div class="lightbox-controls">
+      <button onclick="prevImage()">Prev</button>
+      <button onclick="nextImage()">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const wordsEn = [
+    "Full-Stack Developer",
+    "Cybersecurity",
+    "CTF Player"
+  ];
+
+  const wordsAr = [
+    "مطوّرة فل ستاك",
+    "الأمن السيبراني",
+    "لاعبة CTF"
+  ];
+
+  let currentLang = "en";
+  let i = 0, j = 0, isDel = false;
+
+  function type(){
+    const words = currentLang === "ar" ? wordsAr : wordsEn;
+    let word = words[i % words.length] || "";
+    document.getElementById("typed").textContent = word.substring(0,j);
+
+    if(!isDel && j < word.length) j++;
+    else if(isDel && j > 0) j--;
+    else{
+      isDel = !isDel;
+      if(!isDel) i = (i + 1) % words.length;
+    }
+    setTimeout(type, isDel ? 80 : 120);
+  }
+  type();
+
+  const projectImages = {
+    1:["coffee-1.jpg","coffee-2.jpg","coffee-3.jpg"],
+    2:["hospital-1.jpg","hospital-2.jpg","hospital-3.jpg"],
+    3:["portfolio-1.jpg","portfolio-2.jpg","portfolio-3.jpg"]
+  };
+
+  let currentProject = null;
+  let currentIndex = 0;
+
+  function openLightbox(projectId){
+    currentProject = projectId;
+    currentIndex = 0;
+    showImage();
+    document.getElementById("lightbox").style.display = "flex";
+  }
+
+  function closeLightbox(){
+    document.getElementById("lightbox").style.display = "none";
+  }
+
+  function showImage(){
+    const imgList = projectImages[currentProject];
+    document.getElementById("lightbox-img").src = imgList[currentIndex];
+  }
+
+  function nextImage(){
+    const imgList = projectImages[currentProject];
+    currentIndex = (currentIndex + 1) % imgList.length;
+    showImage();
+  }
+
+  function prevImage(){
+    const imgList = projectImages[currentProject];
+    currentIndex = (currentIndex - 1 + imgList.length) % imgList.length;
+    showImage();
+  }
+
+  window.addEventListener("click",function(e){
+    const lb = document.getElementById("lightbox");
+    if(e.target === lb){ closeLightbox(); }
+  });
+
+  let puzzle = [];
+  let moves = 0;
+
+  function initPuzzle(){
+    puzzle = [1,2,3,4,5,6,7,8,null];
+    moves = 0;
+    updateMoves();
+    renderPuzzle();
+  }
+
+  function renderPuzzle(){
+    const grid = document.getElementById("game-grid");
+    grid.innerHTML = "";
+    puzzle.forEach((val, idx) => {
+      const tile = document.createElement("div");
+      tile.classList.add("game-tile");
+      if(val === null){
+        tile.classList.add("empty");
+      }else{
+        tile.textContent = val;
+        tile.onclick = () => moveTile(idx);
+      }
+      grid.appendChild(tile);
+    });
+  }
+
+  function moveTile(index){
+    const emptyIndex = puzzle.indexOf(null);
+    if(canMove(index, emptyIndex)){
+      [puzzle[index], puzzle[emptyIndex]] = [puzzle[emptyIndex], puzzle[index]];
+      moves++;
+      updateMoves();
+      renderPuzzle();
+      checkWin();
+    }
+  }
+
+  function canMove(i, empty){
+    const row = Math.floor(i / 3);
+    const col = i % 3;
+    const er = Math.floor(empty / 3);
+    const ec = empty % 3;
+    const sameRow = (row === er && Math.abs(col - ec) === 1);
+    const sameCol = (col === ec && Math.abs(row - er) === 1);
+    return sameRow || sameCol;
+  }
+
+  function shufflePuzzle(){
+    for(let k=0;k<100;k++){
+      const emptyIndex = puzzle.indexOf(null);
+      const neighbors = [];
+      [emptyIndex-1, emptyIndex+1, emptyIndex-3, emptyIndex+3].forEach(n=>{
+        if(n >= 0 && n < 9 && canMove(n, emptyIndex)){
+          neighbors.push(n);
+        }
+      });
+      if(neighbors.length>0){
+        const r = neighbors[Math.floor(Math.random()*neighbors.length)];
+        [puzzle[r], puzzle[emptyIndex]] = [puzzle[emptyIndex], puzzle[r]];
+      }
+    }
+    moves = 0;
+    updateMoves();
+    renderPuzzle();
+    setStatus("");
+  }
+
+  function updateMoves(){
+    const el = document.getElementById("game-moves");
+    if(currentLang === "ar"){
+      el.textContent = "الحركات: " + moves;
+    }else{
+      el.textContent = "Moves: " + moves;
+    }
+  }
+
+  function setStatus(msg){
+    document.getElementById("game-status").textContent = msg;
+  }
+
+  function checkWin(){
+    const target = [1,2,3,4,5,6,7,8,null];
+    let ok = true;
+    for(let i=0;i<9;i++){
+      if(puzzle[i] !== target[i]){ ok=false; break; }
+    }
+    if(ok){
+      if(currentLang === "ar"){
+        setStatus("اكتمل البزل ✅");
+      }else{
+        setStatus("Puzzle solved ✅");
+      }
+    }else{
+      setStatus("");
+    }
+  }
+
+  let isDark = false;
+  function toggleTheme(){
+    isDark = !isDark;
+    document.body.classList.toggle("dark", isDark);
+    document.getElementById("theme-toggle").textContent = isDark ? "Light" : "Dark";
+  }
+
+  function toggleLang(){
+    if(currentLang === "en"){
+      setArabic();
+    }else{
+      setEnglish();
+    }
+    updateMoves();
+  }
+
+  function setArabic(){
+    currentLang = "ar";
+    document.documentElement.lang = "ar";
+    document.body.dir = "rtl";
+    document.body.classList.add("rtl");
+
+    document.getElementById("lang-toggle").textContent = "EN";
+
+    document.getElementById("logo-text").textContent = "ربى";
+
+    document.getElementById("nav-home").textContent = "الرئيسية";
+    document.getElementById("nav-about").textContent = "من أنا";
+    document.getElementById("nav-projects").textContent = "المشاريع";
+    document.getElementById("nav-services").textContent = "ماذا أقدّم";
+    document.getElementById("nav-contact").textContent = "تواصل";
+
+    document.getElementById("badge-text").textContent = "متاحة للتدريب والوظائف المبتدئة";
+    document.getElementById("hero-title").textContent = "مرحباً، أنا ربى";
+    document.getElementById("hero-text").textContent =
+      "خريجة علوم حاسب مركّزة على الأمن السيبراني، لينكس، وتطوير فل ستاك بواجهات واضحة. أبني مشاريع عملية وسهلة الاستخدام.";
+
+    document.getElementById("about-title").textContent = "بناء تجارب رقمية مرتبة وآمنة";
+    document.getElementById("about-p1").textContent =
+      "أستمتع ببناء مشاريع فل ستاك، وتحليل الأنظمة، وحل تحديات الأمن.";
+    document.getElementById("about-p2").textContent =
+      "شغلي يجمع بين التطوير، وحل المشاكل، وتقنيات الـ CTF لخلق حلول عملية وآمنة.";
+
+    document.getElementById("card1-title").textContent = "التقنيات";
+    document.getElementById("card1-text").textContent = "HTML, CSS, JS, React Native, أساسيات لينكس";
+    document.getElementById("card2-title").textContent = "التعليم";
+    document.getElementById("card2-text").textContent = "بكالوريوس علوم حاسب – جامعة الجوف";
+    document.getElementById("card3-title").textContent = "مجالات التركيز";
+    document.getElementById("card3-text").textContent = "فل ستاك، الأمن السيبراني، CTF";
+
+    document.getElementById("projects-title").textContent = "أهم مشاريعي";
+
+    document.getElementById("proj1-title").textContent = "تطبيق طلب القهوة";
+    document.getElementById("proj1-desc").textContent =
+      "تطبيق React Native يتيح للعميل طلب القهوة من الفرع لتقليل الازدحام وتركيز الموظفين على تجهيز وتسليم الطلبات.";
+    document.getElementById("proj1-tech").textContent =
+      "التقنيات: React Native, Expo, REST API بسيط";
+    document.getElementById("proj1-view-btn").textContent = "عرض الصور";
+
+    document.getElementById("proj2-title").textContent = "نظام ربط قواعد بيانات المستشفى";
+    document.getElementById("proj2-desc").textContent =
+      "مشروع تخرج يربط قاعدتي بيانات لمستشفيين في نظام واحد موحّد، بحيث يستطيع الأطباء والموظفون الوصول لبيانات المرضى بأمان من منصة مشتركة.";
+    document.getElementById("proj2-tech").textContent =
+      "التقنيات: HTML, CSS, JavaScript, PHP, MySQL (قاعدتان → نظام واحد)";
+    document.getElementById("proj2-view-btn").textContent = "عرض الصور";
+
+    document.getElementById("proj3-title").textContent = "موقع البورتفوليو الشخصي";
+    document.getElementById("proj3-desc").textContent =
+      "موقع بورتفوليو لتجربة توزيع العناصر، الخط البكسلي، الأقسام التفاعلية، ومعرض صور للمشاريع.";
+    document.getElementById("proj3-tech").textContent =
+      "التقنيات: HTML, CSS, JavaScript";
+    document.getElementById("proj3-view-btn").textContent = "عرض الصور";
+
+    document.getElementById("services-title").textContent = "الأشياء التي أستطيع المساعدة بها";
+    document.getElementById("srv1-title").textContent = "تصميم واجهات ويب";
+    document.getElementById("srv1-text").textContent =
+      "تصميم صفحات بسيطة ونظيفة للمشاريع الشخصية والطلابية.";
+    document.getElementById("srv2-title").textContent = "تطوير الواجهات الأمامية";
+    document.getElementById("srv2-text").textContent =
+      "بناء صفحات متجاوبة باستخدام HTML, CSS, JavaScript.";
+    document.getElementById("srv3-title").textContent = "نماذج لتطبيقات الجوال";
+    document.getElementById("srv3-text").textContent =
+      "إنشاء شاشات وتدفق استخدام في React Native لأفكار التطبيقات.";
+    document.getElementById("srv4-title").textContent = "أساسيات الأمن السيبراني";
+    document.getElementById("srv4-text").textContent =
+      "توعية، أوامر لينكس، وممارسات بسيطة لرفع مستوى الأمان.";
+
+    document.getElementById("game-title").textContent = "لعبة البكسل – البزل";
+    document.getElementById("game-text").textContent =
+      "بزل ٣×٣ بسيط. اضغطي على المربعات اللي بجانب الفراغ لتحريكها. رتبي الأرقام من ١ إلى ٨ بالترتيب.";
+    document.getElementById("game-shuffle-btn").textContent = "خلط البزل";
+
+    document.getElementById("contact-title").textContent = "تواصل معي";
+    document.getElementById("contact-p1").textContent =
+      "مستعدة لفرص تدريب، وظائف مبتدئة، أو أعمال بسيطة في الويب، الموبايل، أو الأمن السيبراني.";
+    document.getElementById("contact-mail").textContent = "📧 yourmail@example.com";
+    document.getElementById("contact-phone").textContent = "📞 05xxxxxxxx";
+    document.getElementById("contact-location").textContent = "📍 المملكة العربية السعودية";
+
+    document.getElementById("contact-name-ph").placeholder = "اسمك";
+    document.getElementById("contact-email-ph").placeholder = "بريدك الإلكتروني";
+    document.getElementById("contact-msg-ph").placeholder = "رسالتك";
+    document.getElementById("contact-btn").textContent = "إرسال الرسالة";
+  }
+
+  function setEnglish(){
+    currentLang = "en";
+    document.documentElement.lang = "en";
+    document.body.dir = "ltr";
+    document.body.classList.remove("rtl");
+
+    document.getElementById("lang-toggle").textContent = "AR";
+
+    document.getElementById("logo-text").textContent = "Ruba";
+
+    document.getElementById("nav-home").textContent = "Home";
+    document.getElementById("nav-about").textContent = "About";
+    document.getElementById("nav-projects").textContent = "Projects";
+    document.getElementById("nav-services").textContent = "Services";
+    document.getElementById("nav-contact").textContent = "Contact";
+
+    document.getElementById("badge-text").textContent = "Available for internship & junior roles";
+    document.getElementById("hero-title").textContent = "Hi, I'm Ruba";
+    document.getElementById("hero-text").textContent =
+      "Computer Science graduate focused on cybersecurity, Linux, and clean web & mobile interfaces. I build practical, easy-to-use projects that solve real problems.";
+
+    document.getElementById("about-title").textContent = "Building Meaningful Digital Experiences";
+    document.getElementById("about-p1").textContent =
+      "I enjoy building full-stack projects, analyzing systems, and solving security challenges.";
+    document.getElementById("about-p2").textContent =
+      "My workflow mixes development, problem-solving, and CTF techniques to create practical and secure solutions.";
+
+    document.getElementById("card1-title").textContent = "Tech Stack";
+    document.getElementById("card1-text").textContent = "HTML, CSS, JS, React Native, Linux basics";
+    document.getElementById("card2-title").textContent = "Education";
+    document.getElementById("card2-text").textContent = "BSc in Computer Science – Al Jouf University";
+    document.getElementById("card3-title").textContent = "Focus";
+    document.getElementById("card3-text").textContent = "Full-Stack, Cybersecurity, CTF";
+
+    document.getElementById("projects-title").textContent = "Featured Work";
+
+    document.getElementById("proj1-title").textContent = "Coffee Pickup App";
+    document.getElementById("proj1-desc").textContent =
+      "React Native app concept where users order coffee from a single branch, reduce queue time, and let staff focus only on preparing and handing orders.";
+    document.getElementById("proj1-tech").textContent =
+      "Tech: React Native, Expo, basic REST API";
+    document.getElementById("proj1-view-btn").textContent = "View Images";
+
+    document.getElementById("proj2-title").textContent = "Hospital DB Integration System";
+    document.getElementById("proj2-desc").textContent =
+      "Graduation project that connects two separate hospital databases into a unified system, allowing doctors and staff to access patient data securely from one platform.";
+    document.getElementById("proj2-tech").textContent =
+      "Tech: HTML, CSS, JavaScript, PHP, MySQL (two databases → one system)";
+    document.getElementById("proj2-view-btn").textContent = "View Images";
+
+    document.getElementById("proj3-title").textContent = "Personal Portfolio Website";
+    document.getElementById("proj3-desc").textContent =
+      "This portfolio website built to practice layout, typography, interactive sections, and a project gallery with image popups.";
+    document.getElementById("proj3-tech").textContent =
+      "Tech: HTML, CSS, JavaScript";
+    document.getElementById("proj3-view-btn").textContent = "View Images";
+
+    document.getElementById("services-title").textContent = "What I Can Help With";
+    document.getElementById("srv1-title").textContent = "Web UI Design";
+    document.getElementById("srv1-text").textContent =
+      "Designing clean, simple layouts for personal and student projects.";
+    document.getElementById("srv2-title").textContent = "Frontend Development";
+    document.getElementById("srv2-text").textContent =
+      "Building responsive pages using HTML, CSS, and basic JavaScript.";
+    document.getElementById("srv3-title").textContent = "Mobile Prototypes";
+    document.getElementById("srv3-text").textContent =
+      "Creating React Native screens and flows for app ideas.";
+    document.getElementById("srv4-title").textContent = "Cybersecurity Basics";
+    document.getElementById("srv4-text").textContent =
+      "Awareness, Linux commands, and simple security practices.";
+
+    document.getElementById("game-title").textContent = "Pixel Puzzle";
+    document.getElementById("game-text").textContent =
+      "Simple 3×3 sliding puzzle. Click a tile next to the empty space to move it. Try to arrange the numbers from 1 to 8 in order.";
+    document.getElementById("game-shuffle-btn").textContent = "Shuffle";
+
+    document.getElementById("contact-title").textContent = "Get in Touch with Me";
+    document.getElementById("contact-p1").textContent =
+      "I'm open to internships, junior roles, and small freelance projects related to web, mobile, or cybersecurity.";
+    document.getElementById("contact-mail").textContent = "📧 yourmail@example.com";
+    document.getElementById("contact-phone").textContent = "📞 05xxxxxxxx";
+    document.getElementById("contact-location").textContent = "📍 Saudi Arabia";
+
+    document.getElementById("contact-name-ph").placeholder = "Your Name";
+    document.getElementById("contact-email-ph").placeholder = "Your Email";
+    document.getElementById("contact-msg-ph").placeholder = "Your Message";
+    document.getElementById("contact-btn").textContent = "Send Message";
+  }
+
+  initPuzzle();
+</script>
+
+</body>
+</html>
